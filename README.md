@@ -7,7 +7,7 @@
 - **Público alvo**: alunos da disciplina de SO (Sistemas Operacionais) do curso de TADS (Superior em Tecnologia em Análise e Desenvolvimento de Sistemas) no CNAT-IFRN (Instituto Federal de Educação, Ciência e Tecnologia do Rio Grande do Norte - Campus Natal-Central).
 - disciplina: **SO** [Sistemas Operacionais](https://github.com/sistemas-operacionais/)
 - professor: [Leonardo A. Minora](https://github.com/leonardo-minora)
-- aluno: FIXME
+- aluno:  [Wellington G. Coutinho](https://github.com/Wellcoutinhoch)
 
 ## Sumário
 
@@ -355,3 +355,59 @@ int main() {
 4. Escreva um relatório comparando
    1. A complexidade de leitura e escrita de programas que se comunicam usando processos (kernel) e threads
    2. O tempo de execução dos programas usando processos e threads   
+
+# Relatório da Atividade: Comunicação entre Processos e Threads
+
+## 1. Complexidade de leitura e escrita em programas que usam processos (kernel) e threads
+
+### Comunicação entre Processos (Processos)
+
+- Utilizam mecanismos do kernel como arquivos, pipes, memória compartilhada, etc.
+- Requerem mais cuidado com sincronização e gerenciamento, pois os processos possuem espaços de memória separados.
+- Comunicação pode ser mais lenta devido a troca de contexto entre processos.
+- Exigem criação e manipulação de recursos do sistema, o que pode aumentar a complexidade do código.
+
+### Comunicação entre Threads
+
+- Threads compartilham o mesmo espaço de memória dentro do mesmo processo.
+- Comunicação é direta e mais rápida, pois não há troca de contexto de processos.
+- Sincronização ainda é necessária para evitar condições de corrida.
+- Código geralmente é mais simples para comunicação, mas pode ser mais propenso a erros relacionados a concorrência.
+
+## 2. Tempo de execução dos programas usando processos e threads
+
+- Programas usando **threads** tendem a executar com maior rapidez na comunicação, devido à menor sobrecarga do sistema.
+- Programas usando **processos** podem sofrer atraso devido à troca de contexto e operações mais custosas do kernel.
+- A diferença de tempo varia conforme a complexidade da comunicação e o sistema operacional.
+- Em testes simples, threads mostraram comunicação quase instantânea, enquanto processos tiveram delays perceptíveis na sincronização via arquivos ou memória compartilhada.
+
+# Conclusão
+
+Para comunicação entre tarefas dentro do mesmo programa, o uso de threads é geralmente mais eficiente e simples. Porém, quando se deseja isolamento e segurança, processos são preferíveis, apesar da maior complexidade e custo.
+
+---
+
+## Referências no texto
+
+Como mostrado na **Figura 1**, o programa escritor escreve a mensagem no arquivo e aguarda a leitura. Em seguida, na **Figura 2**, o leitor lê a mensagem e renomeia o arquivo, sinalizando que terminou. Por fim, a **Figura 3** demonstra a comunicação via memória compartilhada.
+
+---
+
+## Figuras
+
+**Figura 1:** Execução do programa escritor (`writer-file.c`), mostrando a mensagem escrita e o aguardo pela leitura.
+
+![Execução do programa escritor](https://i.postimg.cc/XqnvmC3D/Captura-de-tela-2025-08-09-175250.png)
+
+---
+
+**Figura 2:** Comunicação com arquivo, saída do programa leitor (`reader-file.c`) lendo o arquivo e renomeando-o.
+
+![comunicação com arquivo](https://i.postimg.cc/52D21Gbz/Captura-de-tela-2025-08-09-175517.png)
+
+---
+
+**Figura 3:** Execução do programa com comunicação via memória compartilhada, exibindo a mensagem lida.
+
+![Execução do programa com comunicação via memória compartilhada](https://i.postimg.cc/6QstFvfL/Captura-de-tela-2025-08-09-175542.png)
+
